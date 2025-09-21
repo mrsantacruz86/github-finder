@@ -186,7 +186,7 @@ button {
 .suggestions {
   position: absolute;
   width: 100%;
-  max-height: 220px;
+  max-height: 280px;
   margin-top: 0.25rem;
   background: #fff;
   border: 1px solid #ccc;
