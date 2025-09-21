@@ -129,7 +129,7 @@ const UserSearch = () => {
         <RecentSearches
           recentUsers={recentUsers}
           onSelect={(username) => {
-            u;
+            setUsername(username);
             setSubmittedUsername(username);
           }}
         />
