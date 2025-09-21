@@ -49,31 +49,6 @@ const UserSearch = () => {
     localStorage.setItem('recentUsers', JSON.stringify(recentUsers));
   }, [recentUsers]);
 
-  // Close suggestions when clicking outside or pressing Escape
-  useEffect(() => {
-    const onDown = (e: MouseEvent | TouchEvent) => {
-      const target = e.target as Node | null;
-      if (!dropdownRef.current) return;
-      if (target && !dropdownRef.current.contains(target)) {
-        setShowSuggestions(false);
-      }
-    };
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setShowSuggestions(false);
-    };
-
-    document.addEventListener('mousedown', onDown);
-    document.addEventListener('touchstart', onDown);
-    document.addEventListener('keydown', onKey);
-
-    return () => {
-      document.removeEventListener('mousedown', onDown);
-      document.removeEventListener('touchstart', onDown);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, []);
-
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
@@ -99,6 +74,7 @@ const UserSearch = () => {
               show={showSuggestions}
               onSelect={(selected) => {
                 setUsername(selected);
+                setSubmittedUsername(selected);
                 setShowSuggestions(false);
 
                 if (submittedUsername !== selected) {
